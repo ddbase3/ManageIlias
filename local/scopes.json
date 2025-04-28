@@ -1,8 +1,8 @@
 [
 	{
-		"scope": "ilias",
-		"name": "ILIAS",
-		"order": 40,
+		"scope": "web",
+		"name": "Web",
+		"order": 10,
 		"active": 1
 	}
 ]
