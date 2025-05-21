@@ -3,6 +3,7 @@
 namespace ManageIlias\Connector;
 
 use Base3\Api\IOutput;
+use Base3\Api\IRequest;
 use Base3\Configuration\Api\IConfiguration;
 use Base3\Accesscontrol\Api\IAccesscontrol;
 
@@ -12,7 +13,8 @@ class IliasConnector implements IOutput {
 
     public function __construct(
         private IAccesscontrol $accesscontrol,
-        private IConfiguration $configuration
+        private IConfiguration $configuration,
+        private IRequest $request
     ) {}
 
     // Implementation of IBase
@@ -52,8 +54,8 @@ class IliasConnector implements IOutput {
         // TODO maybe transform values
 
         // Sortierung
-        $sort = $_GET['sort'] ?? 'url';
-        $direction = strtolower($_GET['direction'] ?? 'asc');
+        $sort = $this->request->get('sort', 'url');
+        $direction = strtolower($this->request->get('direction', 'asc'));
         usort($iliases, function ($a, $b) use ($sort, $direction) {
             $aVal = strtolower($a[$sort] ?? '');
             $bVal = strtolower($b[$sort] ?? '');
@@ -61,7 +63,7 @@ class IliasConnector implements IOutput {
         });
 
         // Filter
-        $filters = $_GET['filter'] ?? [];
+        $filters = $this->request->get('filter', []);
         $iliases = array_filter($iliases, function ($ilias) use ($filters) {
             foreach ($filters as $key => $val) {
                 if (!isset($ilias[$key])) return false;
@@ -74,7 +76,7 @@ class IliasConnector implements IOutput {
         $total = count($iliases);
         $pageSize = $this->defaultPageSize;
         $totalPages = ceil($total / $pageSize);
-        $page = min(max(1, intval($_GET['page'] ?? 1)), $totalPages);
+        $page = min(max(1, intval($this->request->get('page', 1))), $totalPages);
         $offset = ($page - 1) * $pageSize;
         $pagedData = array_slice($iliases, $offset, $pageSize);
 
