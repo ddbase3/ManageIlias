@@ -8,7 +8,7 @@ class IliasContentControl extends AbstractContentControl {
 
         // Implementation of IBase
 
-        public function getName(): string {
+        public static function getName(): string {
                 return "iliascontentcontrol";
         }
 
