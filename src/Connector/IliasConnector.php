@@ -25,7 +25,7 @@ class IliasConnector implements IOutput {
 
     // Implementation of IOutput
 
-    public function getOutput($out = "html") {
+    public function getOutput(string $out = 'html', bool $final = false): string {
         if ($out !== "json") return null;
         if (!$this->accesscontrol->getUserId()) return null;
 
@@ -89,8 +89,7 @@ class IliasConnector implements IOutput {
         ]);
     }
 
-    public function getHelp() {
+    public function getHelp(): string {
         return "Liefert eine Liste gecrawlter ILIAS-Installationen als JSON (aus iliases.json). Optional: ?sort=url&direction=asc&page=1&filter[key]=value";
     }
 }
-
