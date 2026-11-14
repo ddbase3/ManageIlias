@@ -1,11 +1,25 @@
-<?php
+<?php declare(strict_types=1);
 
-namespace ManageIlias\Connector;
+/***********************************************************************
+ * This file is part of ManageIlias for BASE3 Framework.
+ *
+ * ManageIlias provides ILIAS-related management controls.
+ * It integrates ILIAS operations within Base3Manager.
+ * Host-specific operations retain their existing owners.
+ *
+ * Developed by Daniel Dahme
+ * Licensed under GPL-3.0
+ * https://www.gnu.org/licenses/gpl-3.0.en.html
+ *
+ * https://base3.de
+ ***********************************************************************/
 
-use Base3\Api\IOutput;
-use Base3\Api\IRequest;
-use Base3\Configuration\Api\IConfiguration;
-use Base3\Accesscontrol\Api\IAccesscontrol;
+namespace Base3\ManageIlias\Connector;
+
+use Base3\CoreFoundation\Api\IOutput;
+use Base3\CoreFoundation\Api\IRequest;
+use Base3\CoreFoundation\Configuration\Api\IConfiguration;
+use Base3\CoreFoundation\Accesscontrol\Api\IAccesscontrol;
 
 class IliasConnector implements IOutput {
 

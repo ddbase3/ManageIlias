@@ -1,0 +1,12 @@
+{
+	"manifestVersion": 1,
+	"name": "ManageIlias",
+	"namespace": "Base3\\ManageIlias",
+	"version": "0.0.0",
+	"description": "ManageIlias provides ILIAS-related management controls. It integrates ILIAS operations within Base3Manager. Host-specific operations retain their existing owners.",
+	"license": "GPL-3.0",
+	"dependencies": {
+		"Base3Manager": ">=0.0.0",
+		"CoreFoundation": ">=4.10.0"
+	}
+}
